@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Server Frontend</title>
+</head>
+<body>
+    <h1>Web Server Frontend</h1>
+    <button id="getDataButton">Daten vom Backend abrufen</button>
+
+    <script>
+        document.getElementById('getDataButton').addEventListener('click', function() {
+            fetch('http://<Backend-DNS-Label>.<region>.azurecontainer.io:3000/data')
+                .then(response => response.json())
+                .then(data => {
+                    alert('Daten vom Backend erhalten: ' + JSON.stringify(data));
+                })
+                .catch(error => {
+                    console.error('Fehler beim Abrufen der Daten: ' + error);
+                    alert('Fehler beim Abrufen der Daten. Überprüfen Sie die Konsole für weitere Informationen.');
+                });
+        });
+    </script>
+</body>
+</html>
